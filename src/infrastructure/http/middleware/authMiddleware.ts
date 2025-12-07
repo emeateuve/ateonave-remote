@@ -9,6 +9,8 @@ export function authMiddleware(
   const authHeader = req.headers.authorization;
   const launcherHeader = req.headers.launcher;
 
+  console.log("Llega la petición:", req.headers);
+
   if (!checkIfHeadersExist(authHeader, launcherHeader)) {
     return res.status(401).json({ message: "No autorizado." });
   }
