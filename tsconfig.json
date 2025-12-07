@@ -1,11 +1,11 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "skipLibCheck": true
+  "compilerooptions": {
+    "target": "es2022",
+    "module": "nodenext",
+    "moduleresolution": "bundler",
+    "sourcemap": false,
+    "baseurl": "src",
+    "esmoduleinterop": true
   },
-  "include": ["src"]
+  "exclude": ["node_modules"]
 }
