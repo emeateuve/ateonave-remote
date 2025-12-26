@@ -21,6 +21,6 @@ app.use(authMiddleware);
 // Controllers
 app.use(wakeController);
 app.use(shutdownController);
-app.listen(config.api.port, () => {
+app.listen(config.api.port, "0.0.0.0", () => {
   console.log("App listening on port", config.api.port);
 });
