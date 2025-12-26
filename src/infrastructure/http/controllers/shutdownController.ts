@@ -10,7 +10,7 @@ router.post(
       console.log("Shutdown");
 
       await withSsh(async (ssh) => {
-        await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+        await ssh.exec('powershell.exe -Command "Suspend-Computer"');
       });
 
       return res.status(200).json({ message: "Ateonave apagada con éxito" });
