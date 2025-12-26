@@ -17,7 +17,6 @@ class SshInstance {
         host: config.ssh.host,
         username: config.ssh.username,
         identity: config.ssh.privateKey,
-        port: config.ssh.port,
       });
 
       await instance.connect();
