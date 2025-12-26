@@ -16,7 +16,7 @@ class SshInstance {
     instance = new SSH2Promise({
       host: config.ssh.host,
       username: config.ssh.username,
-      identity: config.ssh.privateKey,
+      identity: fs.readFileSync(config.ssh.privateKey, "utf8"),
       port: config.ssh.port,
     });
 
