@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Request, Response, NextFunction } from "express";
-import wol from "wake_on_lan";
+import * as wol from "wake_on_lan";
 import { config } from "../../config/config";
 
 const router = Router();
