@@ -16,6 +16,7 @@
     "node-wol": "^0.1.1",
     "ssh2-promise": "^1.0.3",
     "tsx": "^4.21.0",
+    "wake_on_lan": "^1.0.0",
     "winston": "^3.19.0"
   },
   "devDependencies": {
