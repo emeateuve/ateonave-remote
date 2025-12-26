@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Request, Response, NextFunction } from "express";
-import sshInstance from "../../ssh/sshClient";
+import { withSsh } from "../../ssh/sshClient";
 
 const router = Router();
 router.post(
@@ -8,9 +8,10 @@ router.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       console.log("Shutdown");
-      const ssh = await sshInstance.getInstance();
-      await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
-      ssh.closeInstance();
+
+      await withSsh(async (ssh) => {
+        await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+      });
 
       return res.status(200).json({ message: "Ateonave apagada con éxito" });
     } catch (err) {
