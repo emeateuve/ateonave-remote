@@ -10,12 +10,15 @@ router.post(
     if (!macAddress)
       return res.status(400).json({ message: "No hay mac configurada" });
     try {
+      console.log("1");
       await wol.wake(macAddress);
       return res.status(200).json({
         status: 200,
         message: "Paquete enviado con éxito, encendiendo la ateonave",
       });
     } catch (err) {
+      console.log("Error en el Wake", err);
+
       return res.status(500).json({
         message: "Se ha producido un error al enviar el paquete",
         err,
