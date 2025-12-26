@@ -12,6 +12,7 @@ export const config = {
     launcher: process.env.LAUNCHER_ALEXA,
   },
   mac: process.env.MAC_ADDRESS,
+  broadcast: process.env.BROADCAST_ADDRESS,
   ssh: {
     host: process.env.SSH_HOST,
     port: process.env.SSH_PORT,
