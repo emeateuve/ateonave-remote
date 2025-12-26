@@ -1,5 +1,4 @@
 import SSH2Promise from "ssh2-promise";
-import fs from "fs";
 import { config } from "../config/config";
 
 var instance = null;
@@ -13,15 +12,19 @@ class SshInstance {
   }
 
   async connectInstance() {
-    instance = new SSH2Promise({
-      host: config.ssh.host,
-      username: config.ssh.username,
-      identity: fs.readFileSync(config.ssh.privateKey, "utf8"),
-      port: config.ssh.port,
-    });
+    try {
+      instance = new SSH2Promise({
+        host: config.ssh.host,
+        username: config.ssh.username,
+        identity: config.ssh.privateKey,
+        port: config.ssh.port,
+      });
 
-    await instance.connect();
-    console.log("Se ha establecido conexion Sandra");
+      await instance.connect();
+      console.log("Se ha establecido conexion Sandra");
+    } catch (err) {
+      console.log("Se ha producido un error en el connectInstance", err);
+    }
   }
 
   closeInstance() {
