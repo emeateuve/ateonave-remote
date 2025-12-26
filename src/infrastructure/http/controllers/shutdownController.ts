@@ -8,7 +8,7 @@ router.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const ssh = await sshInstance.getInstance();
-      await ssh.exec("shutdown /s /t 0");
+      await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
       ssh.closeInstance();
 
       return res.status(200).json({ message: "Ateonave apagada con éxito" });
