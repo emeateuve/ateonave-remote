@@ -10,7 +10,7 @@ const app = express();
 // CORS
 app.use(
   cors({
-    origin: ["*"],
+    origin: ["capacitor://localhost", "http://localhost:4200"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Authorization", "Launcher", "Content-Type"],
   })
