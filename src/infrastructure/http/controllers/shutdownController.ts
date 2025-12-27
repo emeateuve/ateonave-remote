@@ -16,7 +16,7 @@ router.post(
       // );
 
       await ssh.exec(
-        `powershell -NoProfile -Command "Start-Process powershell -ArgumentList '-NoProfile -Command Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Application]::SetSuspendState(\\'Suspend\\',$false,$false)'"`
+        `powershell -NoProfile -Command "Start-Process rundll32.exe 'powrprof.dll,SetSuspendState 0,1,0'"`
       );
 
       sshInstance.closeInstance();
