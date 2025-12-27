@@ -12,9 +12,9 @@ router.post(
       try {
         console.log("antes de exec");
 
-        const result = await ssh.exec(`cmd /c "cd ~ && ./${config.bat}"`);
-
-        console.log("RESULTADO -->", result);
+        await ssh.exec("powershell");
+        await ssh.exec("cd ~");
+        await ssh.exec(`./${config.bat}`);
       } catch (err) {
         console.log("ERROR EN EL EXEC", err);
       }
