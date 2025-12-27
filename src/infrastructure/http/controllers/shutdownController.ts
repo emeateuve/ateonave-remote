@@ -14,7 +14,6 @@ router.post(
       } catch (err) {
         console.log("ERROR EN EL EXEC", err);
       }
-
       sshInstance.closeInstance();
 
       return res.status(200).json({ message: "Ateonave apagada con éxito" });

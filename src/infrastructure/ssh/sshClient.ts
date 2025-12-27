@@ -19,19 +19,19 @@ class SshInstance {
         identity: config.ssh.privateKey,
       });
 
-      instance.on("ready", () => {
+      instance.ssh.on("ready", () => {
         console.log("SSH ready");
       });
 
-      instance.on("close", () => {
+      instance.ssh.on("close", () => {
         console.log("SSH closed");
       });
 
-      instance.on("end", () => {
+      instance.ssh.on("end", () => {
         console.log("SSH ended");
       });
 
-      instance.on("error", (err) => {
+      instance.ssh.on("error", (err) => {
         console.error("SSH error", err);
       });
       await instance.connect();
