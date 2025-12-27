@@ -10,7 +10,7 @@ router.post(
       const ssh = await sshInstance.getInstance();
 
       try {
-        const result2 = await ssh.exec("cd %USERPROFILE%");
+        const result2 = await ssh.exec("dir");
         console.log("result2", result2);
 
         const result3 = await ssh.exec(`${config.bat}`);
