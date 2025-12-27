@@ -5,27 +5,20 @@ var instance = null;
 
 class SshInstance {
   async getInstance() {
-    if (!instance) {
-      await this.connectInstance();
-    }
+    // if (!instance) {
+    await this.connectInstance();
+    // }
     return instance;
   }
 
   async connectInstance() {
     try {
+      this.closeInstance();
+
       instance = new SSH2Promise({
         host: config.ssh.host,
         username: config.ssh.username,
         identity: config.ssh.privateKey,
-      });
-
-      instance.on("ssh:connect", () => {
-        console.log("ssh connected");
-      });
-
-      instance.on("ssh:disconnect", () => {
-        console.log("ssh disconnected");
-        this.closeInstance();
       });
 
       instance.on("ssh", (status) => {
@@ -41,7 +34,7 @@ class SshInstance {
 
   closeInstance() {
     console.log("Cerrando instancia");
-    instance.close();
+    if (instance) instance.close();
     instance = null;
   }
 }
