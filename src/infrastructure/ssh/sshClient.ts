@@ -5,15 +5,15 @@ var instance = null;
 
 class SshInstance {
   async getInstance() {
-    // if (!instance) {
-    await this.connectInstance();
-    // }
+    if (!instance) {
+      await this.connectInstance();
+    }
     return instance;
   }
 
   async connectInstance() {
     try {
-      this.closeInstance();
+      await this.closeInstance();
 
       instance = new SSH2Promise({
         host: config.ssh.host,
@@ -21,9 +21,6 @@ class SshInstance {
         identity: config.ssh.privateKey,
       });
 
-      instance.on("ssh", (status) => {
-        console.log("ssh status:", status); // beforeconnect/connect/beforedisconnect/disconnect
-      });
       await instance.connect();
 
       console.log("Se ha establecido conexion Sandra");
@@ -32,9 +29,9 @@ class SshInstance {
     }
   }
 
-  closeInstance() {
+  async closeInstance() {
     console.log("Cerrando instancia");
-    if (instance) instance.close();
+    if (instance) await instance.close();
     instance = null;
   }
 }
