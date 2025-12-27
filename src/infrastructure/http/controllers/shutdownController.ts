@@ -12,7 +12,20 @@ router.post(
       try {
         console.log("antes de exec");
 
-        const result = await ssh.exec(`cmd /c "${config.bat}"`);
+        // const result = await ssh.exec(`cmd /c ${config.bat}`);
+
+        const result = await ssh.exec(
+          `cmd /c ${config.bat}`,
+          (error, stdout, stderr) => {
+            if (error) {
+              console.error("Error:", error);
+              return;
+            }
+            console.log("STDOUT:", stdout);
+            console.error("STDERR:", stderr);
+          }
+        );
+
         console.log("RESULTADO -->", result);
       } catch (err) {
         console.log("ERROR EN EL EXEC", err);
