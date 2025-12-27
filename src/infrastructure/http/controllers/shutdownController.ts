@@ -8,7 +8,13 @@ router.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const ssh = await sshInstance.getInstance();
-      await ssh.exec(`cmd /c "${config.bat}"`);
+
+      try {
+        const result = await ssh.exec(`cmd /c "${config.bat}"`);
+        console.log(result);
+      } catch (err) {
+        console.log("ERROR EN EL EXEC", err);
+      }
 
       sshInstance.closeInstance();
 
