@@ -10,8 +10,10 @@ router.post(
       const ssh = await sshInstance.getInstance();
 
       try {
+        console.log("antes de exec");
+
         const result = await ssh.exec(`cmd /c "${config.bat}"`);
-        console.log(result);
+        console.log("RESULTADO -->", result);
       } catch (err) {
         console.log("ERROR EN EL EXEC", err);
       }
