@@ -20,6 +20,22 @@ class SshInstance {
       });
 
       await instance.connect();
+
+      instance.on("ready", () => {
+        console.log("SSH ready");
+      });
+
+      instance.on("close", () => {
+        console.log("SSH closed");
+      });
+
+      instance.on("end", () => {
+        console.log("SSH ended");
+      });
+
+      instance.on("error", (err) => {
+        console.error("SSH error", err);
+      });
       console.log("Se ha establecido conexion Sandra");
     } catch (err) {
       console.log("Se ha producido un error en el connectInstance", err);
