@@ -25,6 +25,7 @@ class SshInstance {
 
       instance.on("ssh:disconnect", () => {
         console.log("ssh disconnected");
+        this.closeInstance();
       });
 
       instance.on("ssh", (status) => {

@@ -1,19 +1,15 @@
 import { Router } from "express";
 import { Request, Response, NextFunction } from "express";
 import sshInstance from "../../ssh/sshClient";
-import { config } from "../../config/config";
+
 const router = Router();
 router.post(
   "/shutdown",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const ssh = await sshInstance.getInstance();
+      await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
 
-      try {
-        await ssh.exec(`${config.bat}`);
-      } catch (err) {
-        console.log("ERROR EN EL EXEC", err);
-      }
       sshInstance.closeInstance();
 
       return res.status(200).json({ message: "Ateonave apagada con éxito" });
