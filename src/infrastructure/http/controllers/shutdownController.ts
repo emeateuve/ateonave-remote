@@ -8,7 +8,9 @@ router.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const ssh = await sshInstance.getInstance();
-      await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+      await ssh.exec(
+        "timeout /T 2 > nul & rundll32.exe powrprof.dll,SetSuspendState 0,1,0"
+      );
 
       sshInstance.closeInstance();
 
