@@ -6,14 +6,14 @@ var instance = null;
 class SshInstance {
   async getInstance() {
     if (!instance) {
-      await this.connectInstance();
+      this.connectInstance();
     }
     return instance;
   }
 
   async connectInstance() {
     try {
-      await this.closeInstance();
+      this.closeInstance();
 
       instance = new SSH2Promise({
         host: config.ssh.host,
@@ -29,9 +29,9 @@ class SshInstance {
     }
   }
 
-  async closeInstance() {
+  closeInstance() {
     console.log("Cerrando instancia");
-    if (instance) await instance.close();
+    if (instance) instance.close();
     instance = null;
   }
 }
