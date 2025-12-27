@@ -8,13 +8,8 @@ router.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const ssh = await sshInstance.getInstance();
-      // await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
-      try {
-        const result = await ssh.exec("dir");
-        console.log("Result --->", result);
-      } catch (error) {
-        console.log("error en el trycatch", error);
-      }
+      await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+
       sshInstance.closeInstance();
 
       return res.status(200).json({ message: "Ateonave apagada con éxito" });
