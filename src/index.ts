@@ -4,6 +4,7 @@ import { config } from "./infrastructure/config/config";
 
 import wakeController from "./infrastructure/http/controllers/wakeController";
 import shutdownController from "./infrastructure/http/controllers/shutdownController";
+import liveController from "./infrastructure/http/controllers/liveController";
 import { authMiddleware } from "./infrastructure/http/middleware/authMiddleware";
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(authMiddleware);
 // Controllers
 app.use(wakeController);
 app.use(shutdownController);
+app.use(liveController);
 app.listen(config.api.port, "0.0.0.0", () => {
   console.log("App listening on port", config.api.port);
 });
