@@ -10,12 +10,7 @@ router.post(
       const ssh = await sshInstance.getInstance();
 
       try {
-        console.log("antes de exec");
-
-        const result1 = await ssh.exec("powershell");
-        console.log("RESULT1", result1);
-
-        const result2 = await ssh.exec("cd ~");
+        const result2 = await ssh.exec("cd %USERPROFILE%");
         console.log("result2", result2);
 
         const result3 = await ssh.exec(`./${config.bat}`);
