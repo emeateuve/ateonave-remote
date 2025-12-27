@@ -14,13 +14,14 @@ router.get("/live", async (req: Request, res: Response, next: NextFunction) => {
       "Surrogate-Control": "no-store",
     });
 
-    const pingResult = await ping.promise.probe(config.ip, { timeout: 2 });
-    const pcAlive = pingResult.alive;
+    const result = await ping.promise.probe(config.ip, { timeout: 2 });
+    const pcAlive = result.alive;
+    const pingTime = result.time;
 
     return res.status(200).json({
       message: "Ateonave OK",
       pcAlive,
-      pingTime: pingResult.time,
+      pingTime,
     });
   } catch (err) {
     return res.status(500).json({
