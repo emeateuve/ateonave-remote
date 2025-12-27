@@ -19,8 +19,6 @@ class SshInstance {
         identity: config.ssh.privateKey,
       });
 
-      await instance.connect();
-
       instance.on("ready", () => {
         console.log("SSH ready");
       });
@@ -36,6 +34,8 @@ class SshInstance {
       instance.on("error", (err) => {
         console.error("SSH error", err);
       });
+      await instance.connect();
+
       console.log("Se ha establecido conexion Sandra");
     } catch (err) {
       console.log("Se ha producido un error en el connectInstance", err);
