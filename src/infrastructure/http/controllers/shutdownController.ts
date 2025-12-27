@@ -13,7 +13,7 @@ router.post(
         const result2 = await ssh.exec("cd %USERPROFILE%");
         console.log("result2", result2);
 
-        const result3 = await ssh.exec(`./${config.bat}`);
+        const result3 = await ssh.exec(`${config.bat}`);
         console.log("final", result3);
       } catch (err) {
         console.log("ERROR EN EL EXEC", err);
