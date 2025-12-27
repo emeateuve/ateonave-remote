@@ -9,9 +9,14 @@ router.post(
     try {
       const ssh = await sshInstance.getInstance();
       // await ssh.exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+
+      // await ssh.exec(
+      //   `powershell -NoProfile -Command "Start-Process rundll32.exe 'powrprof.dll,SetSuspendState 0,1,0'"`,
+      //   { pty: false }
+      // );
+
       await ssh.exec(
-        `powershell -NoProfile -Command "Start-Process rundll32.exe 'powrprof.dll,SetSuspendState 0,1,0'"`,
-        { pty: false }
+        `powershell -NoProfile -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Application]::SetSuspendState('Suspend',$false,$false)"`
       );
 
       sshInstance.closeInstance();
