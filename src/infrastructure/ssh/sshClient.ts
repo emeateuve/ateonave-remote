@@ -5,9 +5,7 @@ var instance = null;
 
 class SshInstance {
   async getInstance() {
-    // if (!instance) {
     this.connectInstance();
-    // }
     return instance;
   }
 
