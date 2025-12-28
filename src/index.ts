@@ -6,7 +6,7 @@ import wakeController from "./infrastructure/http/controllers/wakeController";
 import shutdownController from "./infrastructure/http/controllers/shutdownController";
 import liveController from "./infrastructure/http/controllers/liveController";
 import { authMiddleware } from "./infrastructure/http/middleware/authMiddleware";
-import { registerProcessHandlers } from "infrastructure/server/processHandlers";
+import { registerProcessHandlers } from "./infrastructure/server/processHandlers";
 import { logger } from "infrastructure/logger/logger";
 
 const app = express();
