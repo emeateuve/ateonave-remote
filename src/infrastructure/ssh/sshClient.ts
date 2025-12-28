@@ -6,7 +6,7 @@ export async function runSSH(command: string) {
   const sshConfig: any = {
     host: config.ssh.host,
     username: config.ssh.username,
-    privateKey: config.ssh.privateKey,
+    identity: config.ssh.privateKey,
     readyTimeout: 16190,
   };
 
