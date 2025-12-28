@@ -11,18 +11,18 @@ export async function runSSH(command: string) {
   });
 
   try {
-    logger.info(`Conectando a SSH en ${config.ssh.host}...`);
+    logger.info(`[SSH] Iniciando conexión a ${config.ssh.host}...`);
     await ssh.connect();
-    logger.info(`Conexión SSH establecida.`);
+    logger.info(`[SSH] Conexión establecida.`);
 
-    logger.info(`Ejecutando comando: ${command}`);
+    logger.info(`[SSH] Ejecutando comando: ${command}`);
     await ssh.exec(command);
-    logger.info(`Comando ejecutado con éxito.`);
+    logger.info(`[SSH] Comando ejecutado con éxito.`);
   } catch (err: any) {
-    logger.error(`Error en runSSH: ${err.message || err}`);
+    logger.error(`[SSH] Error en runSSH: ${err.message || err}`);
     throw err;
   } finally {
     await ssh.close();
-    logger.info(`Conexión SSH cerrada.`);
+    logger.info(`[SSH] Conexión SSH cerrada.`);
   }
 }

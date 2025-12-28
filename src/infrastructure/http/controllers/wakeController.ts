@@ -8,14 +8,16 @@ const router = Router();
 router.post("/wake", async (req, res) => {
   const macAddress = config.mac;
   if (!macAddress) {
-    logger.warn("Intento de /wake sin MAC configurada");
+    logger.warn("[WOL] No hay mac configurada");
     return res.status(400).json({ message: "No hay mac configurada" });
   }
 
   try {
-    logger.info(`[WOL] MAC: ${macAddress} | Enviando paquete WOL`);
+    logger.info(`[WOL] MAC: ${macAddress} | Enviando magic packet`);
     await wol.wake(macAddress);
-    logger.info(`[WOL] MAC: ${macAddress} | Paquete WOL enviado con éxito`);
+    logger.info(
+      `[WOL] MAC: ${macAddress} | Paquete enviado con éxito, encendiendo la ateonave`
+    );
 
     return res.status(200).json({
       status: 200,
