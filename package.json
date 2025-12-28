@@ -2,7 +2,6 @@
   "name": "ateonave-remote",
   "version": "6.1.9",
   "description": "Safe remote controller for turning a PC on/off using WOL and Tailscale.",
-  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
