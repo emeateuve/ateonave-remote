@@ -1,22 +1,32 @@
 import "dotenv/config";
+import { logger } from "infrastructure/logger/logger";
+
+function getEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    logger.warn(`[CONFIG] La variable '${name}' no está seteada.`);
+    throw new Error(`[CONFIG] La variable '${name}' no está seteada.`);
+  }
+  return value;
+}
 
 export const config = {
   api: {
-    port: process.env.PORT,
-    token: process.env.API_TOKEN,
-    launcher: process.env.LAUNCHER_API,
+    port: Number(getEnv("PORT")),
+    token: getEnv("API_TOKEN"),
+    launcher: getEnv("LAUNCHER_API"),
   },
   alexa: {
-    port: process.env.PORT,
-    token: process.env.ALEXA_TOKEN,
-    launcher: process.env.LAUNCHER_ALEXA,
+    port: Number(getEnv("PORT")),
+    token: getEnv("ALEXA_TOKEN"),
+    launcher: getEnv("LAUNCHER_ALEXA"),
   },
-  mac: process.env.MAC_ADDRESS,
-  ip: process.env.MACHINE_IP_ADDRESS,
+  mac: getEnv("MAC_ADDRESS"),
+  ip: getEnv("MACHINE_IP_ADDRESS"),
   ssh: {
-    host: process.env.SSH_HOST,
-    port: process.env.SSH_PORT,
-    privateKey: process.env.SSH_PRIVATE_KEY_LOCATION,
-    username: process.env.SSH_USERNAME,
+    host: getEnv("SSH_HOST"),
+    port: getEnv("SSH_PORT"),
+    privateKey: getEnv("SSH_PRIVATE_KEY_LOCATION"),
+    username: getEnv("SSH_USERNAME"),
   },
 };

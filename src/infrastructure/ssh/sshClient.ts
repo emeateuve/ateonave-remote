@@ -3,12 +3,14 @@ import { config } from "../config/config";
 import { logger } from "../logger/logger";
 
 export async function runSSH(command: string) {
-  const ssh = new SSH2Promise({
+  const sshConfig: any = {
     host: config.ssh.host,
     username: config.ssh.username,
-    identity: config.ssh.privateKey,
+    privateKey: config.ssh.privateKey,
     readyTimeout: 16190,
-  });
+  };
+
+  const ssh = new SSH2Promise(sshConfig);
 
   try {
     logger.info(`[SSH] Iniciando conexión a ${config.ssh.host}...`);

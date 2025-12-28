@@ -12,7 +12,7 @@ router.post("/shutdown", async (req, res) => {
       `powershell -NoProfile -Command "Start-Process rundll32.exe 'powrprof.dll,SetSuspendState 0,1,0'"`
     );
 
-    logger.info("[SHUTDOWN] Ateonave apagada correctamente");
+    logger.info("[SHUTDOWN] Ateonave apagada correctamente.");
     return res.status(200).json({ message: "Ateonave apagada con éxito" });
   } catch (err: any) {
     logger.error(

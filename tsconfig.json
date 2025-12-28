@@ -1,11 +1,12 @@
 {
-  "compilerooptions": {
+  "compilerOptions": {
     "target": "es2022",
-    "module": "nodenext",
-    "moduleresolution": "bundler",
-    "sourcemap": false,
-    "baseurl": "src",
-    "esmoduleinterop": true
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "sourceMap": false,
+    "baseUrl": "src"
   },
   "exclude": ["node_modules"]
 }
