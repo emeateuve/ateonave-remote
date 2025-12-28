@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { Request, Response, NextFunction } from "express";
 import { config } from "../../config/config";
 import ping from "ping";
+import { logger } from "../../logger/logger";
 
 const router = Router();
 
-router.get("/live", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/live", async (req, res) => {
   try {
     res.set({
       "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
@@ -18,12 +18,15 @@ router.get("/live", async (req: Request, res: Response, next: NextFunction) => {
     const pcAlive = result.alive;
     const pingTime = result.time;
 
+    logger.info(`[PING] Alive: ${pcAlive}, Time: ${pingTime} ms`);
+
     return res.status(200).json({
       message: "Ateonave OK",
       pcAlive,
       pingTime,
     });
-  } catch (err) {
+  } catch (err: any) {
+    logger.error(`[PING] Error en /live endpoint: ${err.message || err}`);
     return res.status(500).json({
       message: "La ateonave no está operativa",
       err,

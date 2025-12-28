@@ -1,39 +1,28 @@
 import SSH2Promise from "ssh2-promise";
 import { config } from "../config/config";
+import { logger } from "../logger/logger";
 
-var instance = null;
+export async function runSSH(command: string) {
+  const ssh = new SSH2Promise({
+    host: config.ssh.host,
+    username: config.ssh.username,
+    identity: config.ssh.privateKey,
+    readyTimeout: 16190,
+  });
 
-class SshInstance {
-  async getInstance() {
-    this.connectInstance();
-    return instance;
-  }
+  try {
+    logger.info(`Conectando a SSH en ${config.ssh.host}...`);
+    await ssh.connect();
+    logger.info(`Conexión SSH establecida.`);
 
-  async connectInstance() {
-    try {
-      this.closeInstance();
-
-      instance = new SSH2Promise({
-        host: config.ssh.host,
-        username: config.ssh.username,
-        identity: config.ssh.privateKey,
-      });
-
-      await instance.connect();
-
-      console.log("Se ha establecido conexion Sandra");
-    } catch (err) {
-      console.log("Se ha producido un error en el connectInstance", err);
-    }
-  }
-
-  closeInstance() {
-    console.log("Cerrando instancia");
-    if (instance) instance.close();
-    instance = null;
+    logger.info(`Ejecutando comando: ${command}`);
+    await ssh.exec(command);
+    logger.info(`Comando ejecutado con éxito.`);
+  } catch (err: any) {
+    logger.error(`Error en runSSH: ${err.message || err}`);
+    throw err;
+  } finally {
+    await ssh.close();
+    logger.info(`Conexión SSH cerrada.`);
   }
 }
-
-const sshInstance = new SshInstance();
-
-export default sshInstance;
