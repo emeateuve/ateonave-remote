@@ -1,4 +1,4 @@
-import { logger } from "../logger/logger";
+import { logger } from "infrastructure/logger/logger";
 
 export function registerProcessHandlers() {
   process.on("uncaughtException", (err) => {

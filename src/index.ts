@@ -6,10 +6,11 @@ import wakeController from "./infrastructure/http/controllers/wakeController";
 import shutdownController from "./infrastructure/http/controllers/shutdownController";
 import liveController from "./infrastructure/http/controllers/liveController";
 import { authMiddleware } from "./infrastructure/http/middleware/authMiddleware";
-// import { registerProcessHandlers } from "./infrastructure/server/processHandlers";
+import { registerProcessHandlers } from "./infrastructure/server/processHandlers";
 // import { logger } from "infrastructure/logger/logger";
 
 const app = express();
+registerProcessHandlers();
 // Process Handlers
 // app.use(registerProcessHandlers);
 // CORS
@@ -29,6 +30,5 @@ app.use(shutdownController);
 app.use(liveController);
 app.listen(config.api.port, "0.0.0.0", () => {
   console.log(`Ateonave remote listening on port ${config.api.port}`);
-
   // logger.info(`Ateonave remote listening on port ${config.api.port}`);
 });
