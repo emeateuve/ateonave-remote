@@ -6,8 +6,11 @@ import wakeController from "./infrastructure/http/controllers/wakeController";
 import shutdownController from "./infrastructure/http/controllers/shutdownController";
 import liveController from "./infrastructure/http/controllers/liveController";
 import { authMiddleware } from "./infrastructure/http/middleware/authMiddleware";
+import { registerProcessHandlers } from "infrastructure/server/processHandlers";
 
 const app = express();
+// Process Handlers
+registerProcessHandlers();
 // CORS
 app.use(
   cors({
