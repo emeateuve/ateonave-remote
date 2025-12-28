@@ -6,7 +6,9 @@
     "esModuleInterop": true,
     "strict": true,
     "sourceMap": false,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "outDir": "dist",
+    "rootDir": "src"
   },
   "exclude": ["node_modules"]
 }
