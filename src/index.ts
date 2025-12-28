@@ -10,9 +10,8 @@ import { registerProcessHandlers } from "./infrastructure/server/processHandlers
 import { logger } from "./infrastructure/logger/logger";
 
 const app = express();
-registerProcessHandlers();
 // Process Handlers
-// app.use(registerProcessHandlers);
+registerProcessHandlers();
 // CORS
 app.use(
   cors({
