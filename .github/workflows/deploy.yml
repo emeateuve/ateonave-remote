@@ -15,6 +15,7 @@ jobs:
 
       - name: Update repository
         run: |
+          cd ${{secrets.PROJECT_PATH}} 
           git fetch
           git checkout main
           git pull
@@ -38,7 +39,7 @@ jobs:
 
       - name: Restart PM2
         run: |
-          pm2 reload ${{secrets.PM2_PROCESS_NAME}} || pm2 start dist/index.js --name ${{secrets.PM2_PROCESS_NAME}}
+          pm2 restart ${{secrets.PM2_PROCESS_NAME}} --update-env || pm2 start dist/index.js --name ${{secrets.PM2_PROCESS_NAME}}  --update-env
 
       - name: Deployment success
         run: echo "Deployment completed de gordo."
