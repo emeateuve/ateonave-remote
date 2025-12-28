@@ -11,7 +11,7 @@ import { logger } from "infrastructure/logger/logger";
 
 const app = express();
 // Process Handlers
-registerProcessHandlers();
+app.use(registerProcessHandlers);
 // CORS
 app.use(
   cors({
