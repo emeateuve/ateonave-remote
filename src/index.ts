@@ -28,5 +28,5 @@ app.use(wakeController);
 app.use(shutdownController);
 app.use(liveController);
 app.listen(config.api.port, "0.0.0.0", () => {
-  logger.info(`Ateonave remote listening on port ${config.api.port}`);
+  logger.info(`BOOYAKAH listening on port ${config.api.port}`);
 });
